@@ -1,0 +1,108 @@
+package com.textbasedgame;
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+/**
+ * Created by Wishart on 12/21/2016.
+ */
+public class Textbasedgame {
+}
+
+class Main {
+    public static void introduction(){
+        System.out.println("You awaken in a dark, damp room.\nTo your left, you make out what appears to be a door.\nWould you like to try and open the door?\n(Please use all lower case lettering)");
+    }
+    public static void doorSuccessful(){
+        System.out.println("After a heavy shove, the door finally snaps open.\nInside of the new room, there is the same door with what appears to be a sleeping face on the front.\nIt awakens as you step forwards.\n\"Oh, hello there.\"\n\"What goes in the water black and comes out red?\"");
+    }
+    public static void doorUnsuccessful(){
+        System.out.println("Seeing that you do not want to progress, you decide to take a seat where you awoke and wait for help to arrive to save you from the scary dark room.\nGAME OVER");
+    }
+    public static void riddleSuccessful(){
+        System.out.println("\"Oh... Yeah that's right...\"\n\"I get very lonely here... but ok... you can leave\"\n\"Don't worry about me! I'll just stay here and wait for another friend\"\n\"Really no its ok dont worry I'll be fine by myself, hahaha\"\n\"I'll just sleep for another 50000000000000000000000000....\"\n\"Oh you're already gone... sigh.\"");
+    }
+    public static void riddleUnsuccessful1(){
+        System.out.println("\"Well... that doesn't appear to be the answer!\nLooks like you're going to have to try again... hahaha oh ahhahahha HAHAHAHA\n;^D\"");
+    }
+    public static void riddleUnsuccessful2(){
+        System.out.println("\"Oh my god.... Oh my god......... another wrong answer!\nOne more incorrect answer and thats it for you!\nFinished!\nThe End!\nYou know, the grand finale, the big bang, DEATH.\nIt really is nothing personal, truly.\nIts just the nature of the beast!\"");
+    }
+    public static void riddleUnsuccessful3(){
+        System.out.println("\"You know, I think that we can both see the absurdity of all this.\nAll that you have on your side is your luck and quick wit to solve a silly riddle after waking up in a dark damp room.\nI'll tell you what, because I really do pity you.\nIf you give me your TRUE name, not the one that you were given, but the one that you know yourself by I will let you pass.\nReally, I will.\nI just want you to know that there are no hard feelings and that I really am not out to get you.\"");
+    }
+    public static void riddleSecretAnswer(){
+        System.out.println("\"Ahhhhhhhhhh....\nWhat a wonderful name.\nBe careful, young one.\nDon't share this with anyone, as they may try to take advantage of you and the power that this holds.\nTrust no one but yourself from now on, and remember: the path of least resistance is usually the most efficient.\"");
+    }
+    public static void riddleSecretAnswerUnsuccessful(){
+        System.out.println("\"Hahahaha....\nYou are right to trust no one with something so valuable.\nWhether or not you know the true value of your name, you must be sure to keep it close to your heart and let no one pry it from you.\nBe off, young one.\nAnd may you find your way out of this strange place.\"");
+    }
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String characterName;
+        String response1;
+        String response2;
+        String yes = "yes";
+        String no = "no";
+        String lobster = "lobster";
+
+        int x = 0;
+        int result = 0;
+
+
+        System.out.println("What do you call yourself?");
+        characterName = scan.nextLine();
+
+        introduction();
+        while (x != 1) {
+            response1 = scan.nextLine();
+            if (response1.compareTo("yes") == 0) {
+                doorSuccessful();
+                x++;
+            } else if (response1.compareTo(no) == 0) {
+                doorUnsuccessful();
+            } else {
+                System.out.println("Please respond with yes or no, no ifs ands or buts about it.");
+            }
+        }
+
+        while (x != 0) {
+            response2 = scan.nextLine();
+            if (response2.compareTo(lobster) == 0) {
+                riddleSuccessful();
+                x--;
+            }
+            else if ((response2.compareTo(lobster)) > 0 || (response2.compareTo(lobster) < 0)) {
+                for (int i = 0; i <= 3; i++) {
+                    if (i == 0) {
+                        riddleUnsuccessful1();
+                        response2 = scan.nextLine();
+                        if (response2.compareTo(lobster) == 0) {
+                            riddleSuccessful();
+                        }
+                        x--;
+                    } else if (i == 1) {
+                        riddleUnsuccessful2();
+                        response2 = scan.nextLine();
+                        if (response2.compareTo(lobster) == 0) {
+                            riddleSuccessful();
+                        }
+                    } else if (i == 2) {
+                        riddleUnsuccessful3();
+                        response2 = scan.nextLine();
+                        if (response2.compareTo(lobster) == 0) {
+                            riddleSuccessful();
+                        }
+                        }
+                    }
+                }
+            if (response2.compareTo(characterName) == 0){
+                riddleSecretAnswer();
+                x--;
+            }
+            if (response2.compareTo(characterName) !=0){
+                riddleSecretAnswerUnsuccessful();
+                x--;
+            }
+        }
+    }
+}
